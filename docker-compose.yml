@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: cat-cpn-mongodb
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - cat-cpn-mongo-data:/data/db
+
+volumes:
+  cat-cpn-mongo-data:
