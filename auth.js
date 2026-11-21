@@ -1,19 +1,32 @@
+const express = require('express');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { requireAdmin } = require('../middleware/auth');
 
-function requireAdmin(req, res, next) {
-  const header = req.headers.authorization || '';
-  const [scheme, token] = header.split(' ');
+const router = express.Router();
+const configuredUsername = process.env.ADMIN_USERNAME || 'catcpn';
+const configuredPassword = process.env.ADMIN_PASSWORD || '';
+const configuredPasswordHash = configuredPassword ? bcrypt.hashSync(configuredPassword, 12) : null;
 
-  if (scheme !== 'Bearer' || !token) {
-    return res.status(401).json({ message: 'Please sign in to use the admin dashboard.' });
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body || {};
+  if (!configuredPasswordHash) {
+    return res.status(503).json({ message: 'Admin sign-in is not configured. Set ADMIN_PASSWORD in your .env file.' });
   }
 
-  try {
-    req.admin = jwt.verify(token, process.env.JWT_SECRET);
-    return next();
-  } catch (_error) {
-    return res.status(401).json({ message: 'Your session has expired. Please sign in again.' });
-  }
-}
+  const usernameMatches = typeof username === 'string' && username === configuredUsername;
+  const passwordMatches = typeof password === 'string' && await bcrypt.compare(password, configuredPasswordHash);
 
-module.exports = { requireAdmin };
+  if (!usernameMatches || !passwordMatches) {
+    return res.status(401).json({ message: 'Incorrect username or password.' });
+  }
+
+  const token = jwt.sign({ role: 'admin', username: configuredUsername }, process.env.JWT_SECRET, { expiresIn: '12h' });
+  return res.json({ token, username: configuredUsername, expiresIn: '12h' });
+});
+
+router.get('/me', requireAdmin, (req, res) => {
+  res.json({ username: req.admin.username, role: req.admin.role });
+});
+
+module.exports = router;
