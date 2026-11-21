@@ -1,16 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0c14" />
-    <title>CAT CPN Downloads — Admin</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a12">
+  <meta name="description" content="CAT CPN Downloads — discover apps, games, documents, tools and more in one clean download hub.">
+  <title>CAT CPN Downloads — Your digital hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="CAT CPN Downloads home">
+      <span class="brand-mark">C<span>✦</span></span>
+      <span class="brand-copy"><strong>CAT CPN</strong><small>DOWNLOADS</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="#discover">Discover</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="admin-link" href="/admin"><span class="admin-dot"></span> Admin Portal <span class="arrow">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="discover">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> THE CAT CPN DIGITAL HUB</div>
+        <h1>Everything you need.<br><span>One download away.</span></h1>
+        <p class="hero-description">Discover apps, games, tools, documents and more — all in one organised place, built for your digital life.</p>
+        <div class="hero-actions">
+          <a href="#library" class="button button-primary">Explore downloads <span>↓</span></a>
+          <a href="#categories" class="button button-quiet">Browse categories <span>↗</span></a>
+        </div>
+        <div class="hero-proof"><span class="proof-icon">✓</span> Curated files <i></i> Clear details <i></i> Easy downloads</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="hero-glow"></div>
+        <div class="floating-card card-top"><span class="mini-icon purple">✦</span><span><b>Discover more</b><small>New files, fresh finds</small></span><span class="mini-arrow">↗</span></div>
+        <div class="download-cube"><div class="cube-inner"><div class="cube-symbol">↓</div><span>CPN</span></div><div class="cube-base"></div></div>
+        <div class="floating-card card-bottom"><span class="mini-icon green">✓</span><span><b>Simple & organised</b><small>Your next download starts here</small></span></div>
+        <div class="art-spark spark-one">✧</div><div class="art-spark spark-two">✦</div><div class="art-spark spark-three">·</div>
+      </div>
+      <div class="hero-bottom-line"><span>DOWNLOAD SMARTER</span><span>CAT PHOENIX <b>·</b> UGANDA</span></div>
+    </section>
+
+    <section class="category-section" id="categories">
+      <div class="section-heading compact-heading">
+        <div><div class="section-kicker">FIND YOUR NEXT FAVOURITE</div><h2>Browse by category</h2></div>
+        <p>Explore the library your way.</p>
+      </div>
+      <div class="category-grid" id="category-grid">
+        <button class="category-tile selected" data-category="All"><span class="category-icon">✦</span><span><b>All files</b><small>Explore everything</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile" data-category="Apps"><span class="category-icon">▦</span><span><b>Apps</b><small>Mobile & desktop</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile" data-category="Games"><span class="category-icon">⌁</span><span><b>Games</b><small>Play something new</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile" data-category="Documents"><span class="category-icon">▤</span><span><b>Documents</b><small>Files & learning</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile" data-category="Tools"><span class="category-icon">⌘</span><span><b>Tools</b><small>Useful utilities</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile" data-category="Other"><span class="category-icon">◈</span><span><b>More</b><small>Explore other files</small></span><span class="tile-arrow">↗</span></button>
+      </div>
+    </section>
+
+    <section class="library-section" id="library">
+      <div class="section-heading library-heading">
+        <div><div class="section-kicker">THE LIBRARY</div><h2>Explore downloads<span class="heading-period">.</span></h2><p class="library-subtitle">Handy finds, ready when you are.</p></div>
+        <div class="library-tools">
+          <label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search downloads..." autocomplete="off"><kbd>↵</kbd></label>
+          <select id="sort-select" aria-label="Sort downloads"><option value="newest">Newest first</option><option value="popular">Most popular</option></select>
+        </div>
+      </div>
+      <div class="filter-row"><div class="filter-pills" id="filter-pills"><button class="filter-pill active" data-category="All">All files</button><button class="filter-pill" data-category="Apps">Apps</button><button class="filter-pill" data-category="Games">Games</button><button class="filter-pill" data-category="Documents">Documents</button><button class="filter-pill" data-category="Tools">Tools</button><button class="filter-pill" data-category="Music">Music</button><button class="filter-pill" data-category="Videos">Videos</button><button class="filter-pill" data-category="Other">Other</button></div><span class="results-count" id="results-count">Loading library…</span></div>
+      <div class="download-grid" id="download-grid" aria-live="polite">
+        <div class="loading-card"><span class="loader"></span><p>Opening the library…</p></div>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </section>
+
+    <section class="callout" id="about">
+      <div class="callout-symbol">C<span>✦</span></div>
+      <div><div class="section-kicker">MADE FOR THE CURIOUS</div><h2>Your digital world,<br>all in one place.</h2><p>CAT CPN Downloads is a simple library for useful digital files. New items are added by the site administrator.</p></div>
+      <a class="button button-light" href="/admin">Manage the library <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="/"><span class="brand-mark">C<span>✦</span></span><span class="brand-copy"><strong>CAT CPN</strong><small>DOWNLOADS</small></span></a>
+    <p>© <span id="year"></span> CAT CPN Downloads. Built with purpose by CAT PHOENIX.</p>
+    <a href="#discover" class="back-top">Back to top ↑</a>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
 </html>
